@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic-settings
+SQLAlchemy
+asyncpg
+alembic
+pydantic[email]
+passlib[bcrypt]
+asyncpg
