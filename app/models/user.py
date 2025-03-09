@@ -1,7 +1,13 @@
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import declarative_base
+from sqlalchemy import Column, Integer, String, Enum
+from sqlalchemy.orm import relationship
+from . import Base
 
-Base = declarative_base()
+import enum
+
+class UserRole(enum.Enum):
+    SUPER_ADMIN = "super_admin"
+    ADMIN = "admin"
+    USER = "user"
 
 class User(Base):
     __tablename__ = "users"
@@ -10,3 +16,4 @@ class User(Base):
     username = Column(String, unique=True, nullable=False)
     email = Column(String, unique=True, nullable=False)
     hashed_password = Column(String, nullable=False)
+    role = Column(Enum(UserRole), default=UserRole.USER, nullable=False)
