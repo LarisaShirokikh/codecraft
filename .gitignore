@@ -171,4 +171,5 @@ cython_debug/
 .pypirc
 
 venv/
-.config.py
+app/config.py
+alembic.ini
