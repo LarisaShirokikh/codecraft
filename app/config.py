@@ -1,9 +1,9 @@
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    APP_NAME: str = "CodeCraft"
+    APP_NAME: str = "DoorsBackend"
     DEBUG: bool = True
-    DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/codecraft"
+    DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/doors_db"
     REDIS_HOST: str = "localhost"
     REDIS_PORT: int = 6379
     JWT_SECRET_KEY: str = "123456789"
