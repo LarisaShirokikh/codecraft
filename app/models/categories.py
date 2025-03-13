@@ -18,7 +18,6 @@ class Category(Base):
 
     # Связь с каталогом (Используем use_alter=True для разрыва цикла)
     catalog_id = Column(Integer, ForeignKey("catalogs.id", use_alter=True, ondelete="CASCADE"), nullable=True)
-
     catalog = relationship("Catalog", back_populates="categories", foreign_keys=[catalog_id])
     products = relationship("Product", secondary=product_category_association, back_populates="categories")
 

@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Text
 from sqlalchemy.orm import relationship
-from . import Base
+from app.models import Base
 
 class ProductFeature(Base):
     __tablename__ = "product_features"
