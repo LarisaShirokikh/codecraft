@@ -1,6 +1,6 @@
 # deps.py                 # Зависимости API (авторизация и т.д.)
 # app/api/deps.py
-from typing import Generator, Optional
+from typing import AsyncGenerator, Generator, Optional
 
 from fastapi import Depends, Security
 from fastapi.security import OAuth2PasswordBearer, SecurityScopes
@@ -19,7 +19,7 @@ oauth2_scheme = OAuth2PasswordBearer(
 )
 
 
-def get_db() -> Generator:
+async def get_db() -> AsyncGenerator:
     """
     Зависимость для получения сессии БД.
     """
@@ -27,7 +27,7 @@ def get_db() -> Generator:
         db = SessionLocal()
         yield db
     finally:
-        db.close()
+        await db.close()
 
 
 def get_current_user(

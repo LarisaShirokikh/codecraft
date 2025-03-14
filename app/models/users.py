@@ -21,6 +21,6 @@ class User(Base):
     is_active = Column(Boolean, default=True)
 
     # Связи
-    products = relationship("Product", back_populates="added_by")
+    products = relationship("Product", back_populates="user")
     reviews = relationship("Review", back_populates="user")
     comments = relationship("Comment", back_populates="user")

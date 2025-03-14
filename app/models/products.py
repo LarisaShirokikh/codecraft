@@ -20,6 +20,7 @@ class Product(Base):
     in_stock = Column(Boolean, default=True)  # В наличии или нет
     description = Column(Text, nullable=True)  # Описание
     catalog_id = Column(Integer, ForeignKey("catalogs.id"), nullable=False)  # Каталог
+    user_id = Column(Integer, ForeignKey("users.id"))
 
     photos = relationship("ProductPhoto", back_populates="product", cascade="all, delete-orphan")
     videos = relationship("ProductVideo", back_populates="product", cascade="all, delete-orphan")
@@ -27,3 +28,5 @@ class Product(Base):
 
     categories = relationship("Category", secondary="category_product", back_populates="products")
     catalog = relationship("Catalog", back_populates="products")
+
+    user = relationship("User", back_populates="products")

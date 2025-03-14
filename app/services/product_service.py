@@ -1,3 +1,4 @@
+# app/service/product_service.py
 from typing import List, Optional, Dict, Any
 from fastapi import Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession

@@ -1,5 +1,6 @@
 # app/crud/base.py
 # Базовый класс CRUD
+from __future__ import annotations
 from typing import Any, Dict, Generic, List, Optional, Type, TypeVar, Union
 
 from fastapi.encoders import jsonable_encoder
@@ -8,7 +9,7 @@ from sqlalchemy.orm import Session
 
 from app.db.base import Base
 
-ModelType = TypeVar("ModelType", bound=Base)
+ModelType = TypeVar("ModelType", bound=Base) 
 CreateSchemaType = TypeVar("CreateSchemaType", bound=BaseModel)
 UpdateSchemaType = TypeVar("UpdateSchemaType", bound=BaseModel)
 
@@ -64,3 +65,6 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         db.delete(obj)
         db.commit()
         return obj
+
+# Импорт Base для использования в рантайме (тип будет оцениваться как строковая ссылка)
+from app.db.base import Base

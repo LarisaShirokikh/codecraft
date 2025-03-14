@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 from app.models.products import Product
 
 from app.models.users import User, UserRole
-from app.schemas.product import ProductCreate
-from app.schemas.user import UserCreate
+from app.schemas.product_schema import ProductCreate
+from app.schemas.user_schema import UserCreate
 
 from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession
