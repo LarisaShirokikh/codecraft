@@ -1,5 +1,7 @@
 # app/crud/__init__.py
 from app.crud.base import CRUDBase
-from app.crud.product import product
+from app.crud.product import Product
+from app.crud.user import user
+from app.crud.category import Category
 
 print("CRUD __init__.py loaded successfully! Product object imported!")

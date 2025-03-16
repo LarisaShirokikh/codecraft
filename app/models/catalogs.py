@@ -8,9 +8,6 @@ class Catalog(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, nullable=False)  
     
-    # category_id = Column(Integer, ForeignKey("categories.id", use_alter=True, ondelete="CASCADE"), nullable=True)  
-
-    # category = relationship("Category", back_populates="catalogs", foreign_keys=[category_id])
-    category_id = Column(Integer, ForeignKey("categories.id", use_alter=True, ondelete="CASCADE"), nullable=True)
-    category = relationship("Category", back_populates="catalogs", foreign_keys=[category_id])
+    
+    categories = relationship("Category", back_populates="catalog")
     products = relationship("Product", back_populates="catalog")

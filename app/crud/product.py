@@ -3,6 +3,7 @@ from typing import List, Optional, Dict, Any
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, update, delete
 from app.models.products import Product
+from app.models.categories import Category
 from app.models.product_photo import ProductPhoto
 from app.schemas.photo_schema import ProductPhotoCreate
 from app.schemas.product_schema import ProductCreate, ProductUpdate
@@ -84,5 +85,35 @@ class CRUDProduct:
             await db.delete(db_obj)
             await db.commit()
 
+    async def create(self, db: AsyncSession, *, obj_in: ProductCreate) -> Product:
+        from app.models.categories import Category
+        
+        # Convert Pydantic model to dict
+        obj_in_data = obj_in.model_dump(exclude_unset=True)
+
+        # Extract category_ids
+        category_ids = obj_in_data.pop("category_ids", [])
+
+        # Create Product object
+        db_obj = Product(**obj_in_data)
+        db.add(db_obj)
+        await db.commit()
+        await db.refresh(db_obj)
+
+        # If categories are provided, add them
+        if category_ids:
+            # Get Category objects one by one and append them
+            for cat_id in category_ids:
+                stmt = select(Category).where(Category.id == cat_id)
+                result = await db.execute(stmt)
+                category = result.scalars().first()
+                if category:
+                    db_obj.categories = db_obj.categories + [category]
+            
+            # Save changes
+            await db.commit()
+            await db.refresh(db_obj)
+
+        return db_obj
 # Экземпляр CRUD для удобного импорта
 product = CRUDProduct()

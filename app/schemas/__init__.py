@@ -7,7 +7,7 @@ from app.schemas.category_schema import CategoryBase, CategoryCreate, CategoryUp
 from app.schemas.feature_schema import ProductFeatureCreate, ProductFeatureResponse
 from app.schemas.photo_schema import ProductPhotoCreate, ProductPhotoResponse
 from app.schemas.video_schema import ProductVideoCreate, ProductVideoResponse
-from app.schemas.user_schema import UserCreate, UserResponse
+from app.schemas.user_schema import User, UserCreate, UserUpdate, UserInDB, UserBase, Token, TokenPayload, UserRole, UserResponse
 # from app.schemas.order_schema import OrderCreate, OrderResponse
 
 # If you need to re-export for type hints

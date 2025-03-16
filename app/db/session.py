@@ -1,3 +1,4 @@
+# app/db/session.py
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 
@@ -19,6 +20,8 @@ AsyncSessionLocal = sessionmaker(
 
 # Добавляем алиас SessionLocal для обратной совместимости
 SessionLocal = AsyncSessionLocal
+
+print(f"Using DATABASE_URL: {settings.DATABASE_URL}")  # DEBUG
 
 # Функция-зависимость для FastAPI, возвращающая сессию БД
 async def get_db():

@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from app.models import Base
 
+
 class CategoryPhoto(Base):
     __tablename__ = "category_photos"
 
